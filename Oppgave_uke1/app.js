@@ -22,7 +22,6 @@ dropZone.addEventListener("dragleave", () => {
 dropZone.addEventListener("drop", (event) => {
   event.preventDefault();
   dropZone.classList.remove("dragover");
-
   const file = event.dataTransfer.files[0];
   if (file && file.type === "text/plain") {
     handleFile({ target: { files: [file] } });
@@ -33,12 +32,13 @@ dropZone.addEventListener("drop", (event) => {
 
 function handleFile(event) {
   const file = event.target.files[0];
+
   if (!file) return;
 
   const reader = new FileReader();
   reader.onload = function (e) {
     const text = e.target.result;
-    parseFileContent(text);
+    const a = parseFileContent(text);
   };
   reader.readAsText(file);
 }
@@ -80,6 +80,7 @@ function parseFileContent(text) {
 
   renderTables(loadedTeams);
 }
+console.log(loadedTeams);
 
 function renderTables(teams) {
   const teamTableBody = document.querySelector("#teamTable tbody");
