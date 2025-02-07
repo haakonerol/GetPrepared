@@ -36,7 +36,7 @@ public class CharacterController: ControllerBase
     {
         Context.Characters.Add(character);
         await Context.SaveChangesAsync();
-        return Ok( await Context.Characters.ToListAsync());
+        return CreatedAtAction(nameof(GetCharacterById), new { id = character.Id }, character);
     }
 
     [HttpPut("{id}")]
