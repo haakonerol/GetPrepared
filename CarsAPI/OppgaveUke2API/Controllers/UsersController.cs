@@ -18,7 +18,16 @@ public class UsersController: ControllerBase
     [HttpGet]
     public async Task<ActionResult<List<User>>> GetUsers()
     {
-        return await Context.Users.ToListAsync();
+        return Ok(await Context.Users.ToListAsync());
+    }
+
+    [HttpGet("{id}")]
+    public async Task<ActionResult<User>> GetUserById(int id)
+    {
+        var user = await Context.Users.FindAsync(id);
+        if(user == null)
+            return BadRequest("User not found");
+        return Ok(user);
     }
 
     [HttpPost]
@@ -26,6 +35,30 @@ public class UsersController: ControllerBase
     {
         Context.Add(user);
         await Context.SaveChangesAsync();
-        return Ok();
+        return Ok(await Context.Users.ToListAsync());
     }
+
+    [HttpPut("{id}")]
+    public async Task<ActionResult<User>> UpdateUser(int id, User request)
+    {
+        var user = await Context.Users.FindAsync(id);
+        if(user == null)
+            return BadRequest("User not found");
+        user.Username = request.Username;
+        await Context.SaveChangesAsync();
+        return Ok(await Context.Users.ToListAsync());
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<ActionResult<List<User>>> DeleteUser(int id)
+    {
+        var user = await Context.Users.FindAsync(id);
+        if(user == null)
+            return BadRequest("User not found");
+        Context.Users.Remove(user);
+        await Context.SaveChangesAsync();
+        return Ok(await Context.Users.ToListAsync());
+    }
+
+
 }

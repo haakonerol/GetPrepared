@@ -1,3 +1,4 @@
+using System.Text.RegularExpressions;
 using Microsoft.EntityFrameworkCore;
 using OppgaveUke2API.Models;
 
@@ -11,4 +12,5 @@ public class ApplicationDbContext: DbContext
     }
 
     public DbSet<User> Users { get; set; }
+    public DbSet<Character> Characters { get; set; }
 }
