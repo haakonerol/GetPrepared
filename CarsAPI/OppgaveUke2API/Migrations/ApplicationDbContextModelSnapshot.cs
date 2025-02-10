@@ -24,6 +24,7 @@ namespace OppgaveUke2API.Migrations
 
                     b.Property<string>("CharName")
                         .IsRequired()
+                        .HasMaxLength(20)
                         .HasColumnType("TEXT");
 
                     b.Property<int>("Statment")
@@ -44,6 +45,8 @@ namespace OppgaveUke2API.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Username")
+                        .IsRequired()
+                        .HasMaxLength(20)
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
