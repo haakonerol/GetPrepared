@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("OppgaveUke2API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c31ce65ad7fb576474d1e4c54708c9a2f82f3b59")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2e4c7544b99e034b27281a7a242a80d06552956e")]
 [assembly: System.Reflection.AssemblyProductAttribute("OppgaveUke2API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("OppgaveUke2API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
