@@ -120,6 +120,7 @@ namespace TodoApi.Controllers
         {
             Id = todoItem.Id,
             Title = todoItem.Title,
+            Description = todoItem.Description,
             IsComplete = todoItem.IsComplete,
             CreatedAt = todoItem.CreatedAt,
             UpdatedAt = todoItem.UpdatedAt

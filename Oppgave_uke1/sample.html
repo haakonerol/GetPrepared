@@ -1,59 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TXT to Flat JavaScript Object</title>
-</head>
-<body>
+  </head>
+  <body>
     <h1>Convert TXT to Flat JavaScript Object</h1>
     <input type="file" id="fileInput" accept=".txt" />
 
     <script>
-        // Kullanıcı dosya seçtiğinde çalışır
-        document.getElementById('fileInput').addEventListener('change', function(event) {
-            const file = event.target.files[0];
-            if (!file) {
-                alert('Lütfen bir dosya seçin!');
-                return;
-            }
+      // Kullanıcı dosya seçtiğinde çalışır
+      document
+        .getElementById("fileInput")
+        .addEventListener("change", function (event) {
+          const file = event.target.files[0];
+          if (!file) {
+            alert("Lütfen bir dosya seçin!");
+            return;
+          }
 
-            // FileReader ile dosya içeriğini oku
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const text = e.target.result; // Dosya içeriği
-                const data = parseTxtToFlatObject(text); // İçeriği düz nesneye dönüştür
-                console.log(data); // Dönüştürülmüş nesneyi konsola yazdır
-            };
-            reader.readAsText(file);
+          // FileReader ile dosya içeriğini oku
+          const reader = new FileReader();
+          reader.onload = function (e) {
+            const text = e.target.result; // Dosya içeriği
+            const data = parseTxtToFlatObject(text); // İçeriği düz nesneye dönüştür
+            // console.log(data); // Dönüştürülmüş nesneyi konsola yazdır
+          };
+          reader.readAsText(file);
         });
 
-        // TXT içeriğini düz JavaScript nesnesine dönüştüren fonksiyon
-        function parseTxtToFlatObject(text) {
-            const result = []; // Düz yapıdaki veriler burada saklanacak
-            const lines = text.split('\n');
-            let currentTeam = ''; // Şu anda işlem gören takım adı
-            //console.log(lines);
-            lines.forEach(line => {
-                line = line.trim(); // Satır başındaki ve sonundaki boşlukları kaldır
-                console.log(line);
-                if (line.startsWith('Team')) {
-                    // Eğer satır bir takım başlığını temsil ediyorsa, mevcut takımı güncelle
-                    currentTeam = line;
-                } else if (line) {
-                    // Eğer satır bir takım değilse ve boş değilse
-                    const [name, description] = line.split('\t').filter(Boolean).map(item => item.trim());
-                    console.log(name,description,currentTeam);
-                    if (name && description) {
-                        result.push({ name, description, team: currentTeam }); // Her öğrenci bir nesne olarak eklenir
-                        console.log(result);
-                    }
-                }
-            });
+      // TXT içeriğini düz JavaScript nesnesine dönüştüren fonksiyon
+      function parseTxtToFlatObject(text) {
+        const result = []; // Düz yapıdaki veriler burada saklanacak
+        const lines = text.split("\n");
+        let currentTeam = ""; // Şu anda işlem gören takım adı
+        //console.log(lines);
+        lines.forEach((line) => {
+          line = line.trim(); // Satır başındaki ve sonundaki boşlukları kaldır
+          console.log(line);
+          if (line.startsWith("Team")) {
+            // Eğer satır bir takım başlığını temsil ediyorsa, mevcut takımı güncelle
+            currentTeam = line;
+          } else if (line) {
+            // Eğer satır bir takım değilse ve boş değilse
+            const [name, description] = line
+              .split("\t")
+              .filter(Boolean)
+              .map((item) => item.trim());
+            console.log(name, description, currentTeam);
+            if (name && description) {
+              result.push({ name, description, team: currentTeam }); // Her öğrenci bir nesne olarak eklenir
+              console.log(result);
+            }
+          }
+        });
 
-            return result; // Düz yapıdaki verileri döndür
-            
-        }
+        return result; // Düz yapıdaki verileri döndür
+      }
     </script>
-</body>
+  </body>
 </html>
