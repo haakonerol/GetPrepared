@@ -11,8 +11,10 @@ builder.Services.AddDbContext<TodoContext>(opt =>
     opt.UseInMemoryDatabase("TodoList"));
 
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
+builder.Services.AddSwaggerGen(options =>
+{
+    options.EnableAnnotations();
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

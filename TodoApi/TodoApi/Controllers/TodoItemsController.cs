@@ -1,6 +1,7 @@
 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Swashbuckle.AspNetCore.Annotations;
 using TodoApi.DbContext;
 using TodoApi.Models;
 
@@ -75,6 +76,7 @@ namespace TodoApi.Controllers
         // POST: api/TodoItems
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
+
         public async Task<ActionResult<TodoItemDto>> PostTodoItem(TodoItemDto todoDTO)
         {
             var todoItem = new TodoItem()
@@ -82,7 +84,6 @@ namespace TodoApi.Controllers
                 Title    = todoDTO.Title,
                 Description = todoDTO.Description,
                 IsComplete = todoDTO.IsComplete,
-                CreatedAt = DateTime.Now
             };
 
             _context.TodoItems.Add(todoItem);
