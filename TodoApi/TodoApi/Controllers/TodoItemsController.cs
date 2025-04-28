@@ -76,6 +76,10 @@ namespace TodoApi.Controllers
         // POST: api/TodoItems
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
+        [SwaggerOperation(
+            Summary = "Create a Todo item",
+            Description = "Creates a new Todo item. Only 'title', 'isComplete' and 'price' are required."
+        )]
 
         public async Task<ActionResult<TodoItemDto>> PostTodoItem(TodoItemDto todoDTO)
         {
